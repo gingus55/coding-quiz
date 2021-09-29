@@ -12,12 +12,22 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 #timer{
-    justify-content: right;
+    
 }
 
 .button{
-    
+ margin: 5px 5px;
+ padding: 5px 5px;
+ background-color: aqua;
+ border-radius: 8%;
+ text-decoration-style: none;
+ font-style: none;
+}
+
+.button:hover{
+    background-color: blue;
 }
