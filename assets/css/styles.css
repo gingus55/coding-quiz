@@ -24,10 +24,19 @@ body {
  padding: 5px 5px;
  background-color: aqua;
  border-radius: 8%;
- text-decoration-style: none;
- font-style: none;
+ text-decoration: none;
+ color: black;
 }
 
 .button:hover{
     background-color: blue;
+    color: white;
+}
+
+.questions{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    list-style-type: none;
+    text-align: left;
 }
