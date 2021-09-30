@@ -40,3 +40,18 @@ body {
     list-style-type: none;
     text-align: left;
 }
+
+.response-button{
+    background-color: purple;
+    padding: 0px 60px;
+    border-radius: 10% 10%;
+    color: white;
+}
+
+.questions li{
+    margin-bottom: 20px;
+}
+
+.response-button:hover{
+    background-color: lightpink;
+}
