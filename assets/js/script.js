@@ -1,5 +1,30 @@
 console.log("Hello world");
 
+// Here I will build the starting page
+
+const starterBtn = document.createElement("a");
+starterBtn.setAttribute("class", "button");
+starterBtn.setAttribute("id", "start");
+starterBtn.textContent = "Start";
+
+const instructions = document.createElement("p");
+instructions.textContent = "You have 75 seconds to answer as many questions correctly as possible. Good Luck!";
+
+const title = document.createElement("h1");
+title.textContent = "Coding Challenge";
+
+const buildStarterPage = function() {
+    const starterPage = document.createElement("section");
+    starterPage.setAttribute("class", "starting-page");
+
+    starterPage.append(title, instructions, starterBtn);
+
+    console.log(starterPage);
+    return starterPage;
+}
+
+buildStarterPage();
+
 // here I will build my question-page
 
 const buildHeader = function(){
@@ -51,3 +76,5 @@ return questionPage;
 };
 // pretty sure this is working as can see correct HTML in console log
 buildQuestionPage();
+
+
