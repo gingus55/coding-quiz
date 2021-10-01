@@ -2,8 +2,6 @@ console.log("Hello world");
 
 // here I will build my question-page
 
-console.log("building a page");
-
 const buildHeader = function(){
     const headerTwo = document.createElement("h2");
     headerTwo.textContent="Questions goes here";
