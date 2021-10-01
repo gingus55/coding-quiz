@@ -1,5 +1,16 @@
 console.log("Hello world");
 
+// i need to make the start button commence the quiz
+const startClick = document.querySelector("#start");
+const mainScreen = document.getElementById("main-container");
+
+const begin = function(){
+
+    console.log("clicked");
+};
+
+startClick.addEventListener('click', begin);
+
 // Here I will build the starting page
 
 const starterBtn = document.createElement("a");
