@@ -34,42 +34,53 @@ const questionArray = [
      decoy: ["1", "first", "foo"]}       
 ];
 
-
-// i need to make the start button commence the quiz
-const startClick = document.querySelector("#start");
 const mainScreen = document.getElementById("main-container");
 
-const begin = function(){
-
-    console.log("clicked");
-};
-
-startClick.addEventListener('click', begin);
 
 // Here I will build the starting page
 
-const starterBtn = document.createElement("a");
-starterBtn.setAttribute("class", "button");
-starterBtn.setAttribute("id", "start");
-starterBtn.textContent = "Start";
-
-const instructions = document.createElement("p");
-instructions.textContent = "You have 75 seconds to answer as many questions correctly as possible. Good Luck!";
-
-const title = document.createElement("h1");
-title.textContent = "Coding Challenge";
-
 const buildStarterPage = function() {
+    const starterBtn = document.createElement("a");
+    starterBtn.setAttribute("class", "button");
+    starterBtn.setAttribute("id", "start");
+    starterBtn.textContent = "Start";
+
+    const instructions = document.createElement("p");
+    instructions.textContent = "You have 75 seconds to answer as many questions correctly as possible. Good Luck!";
+
+    const title = document.createElement("h1");
+    title.textContent = "Coding Challenge";
+
+
     const starterPage = document.createElement("section");
     starterPage.setAttribute("class", "starting-page");
+    starterPage.setAttribute("id", "starting-page");
 
     starterPage.append(title, instructions, starterBtn);
 
-    console.log(starterPage);
-    return starterPage;
+    // console.log(starterPage);
+    mainScreen.appendChild(starterPage);
 }
 
-buildStarterPage();
+// render starter page on load
+window.addEventListener('load', buildStarterPage);
+
+// i need to make the start button commence the quiz
+const startClick = document.querySelector("#start");
+console.log(startClick);
+startClick.addEventListener('click', begin);
+
+
+const begin = function(){
+//   needs to remove starting page
+// starterPage.remove(); 
+// needs to render questions
+console.log("clicked!");
+// needs to start timer
+};
+
+
+
 
 // here I will build my question-page
 
