@@ -2,36 +2,36 @@ console.log("Hello world");
 
 // I need an array of questions defined globally
 const questionArray = [
-    {question: "What acronym is used for 'Application Program Interface'?",
-     answer: 'API',
-     decoy: ['IBM', "CSS", "ABC"]},
-    {question: "A Boolean can return 'true' and ...?",
-     answer: "false",
-     decoy: ["say what?", "wrong", "whatever"]},
-    {question: "A 'string' is an example of an ...",
-     answer: "data type",
-     decoy: ["toy", "fruit", "API"]},
-    {question: "Who is the best Avenger?",
-     answer: "Hulk",
-     decoy: ["Iron Man", "Thor", "Black Widow"]},
-    {question: "How many primitive data types are there?",
-     answer: "7",
-     decoy: ["5","8","6"]},
-    {question: "Which of the following is an example of a 'loop'?",
-     answer: "while",
-     decoy: ["whenever","meanwhile","justify"]},
-    {question: "What is the acronym for Hypertext Markup Language?",
-     answer: "HTML",
-     decoy: ["CSS", "JS", "HML"]},
-    {question: "Which of the following asks if something is strictly equal?",
-     answer: "===",
-     decoy: ["==", "!==", "="]},
-    {question: "What does CSS stand for?",
-     answer: "Cascading style sheets",
-     decoy: ["Cascading sheet styles", "Computer styling sheets", "Computational sheet styles"]},
-    {question: "Which is the index value of the first element in an array?",
-     answer: "0",
-     decoy: ["1", "first", "foo"]}       
+    {"question": "What acronym is used for 'Application Program Interface'?",
+     "answer": 'API',
+     "decoy": ['IBM', "CSS", "ABC"]},
+    {"question": "A Boolean can return 'true' and ...?",
+     "answer": "false",
+     "decoy": ["say what?", "wrong", "whatever"]},
+    {"question": "A 'string' is an example of an ...",
+     "answer": "data type",
+     "decoy": ["toy", "fruit", "API"]},
+    {"question": "Who is the best Avenger?",
+     "answer": "Hulk",
+     "decoy": ["Iron Man", "Thor", "Black Widow"]},
+    {"question": "How many primitive data types are there?",
+     "answer": "7",
+     "decoy": ["5","8","6"]},
+    {"question": "Which of the following is an example of a 'loop'?",
+     "answer": "while",
+     "decoy": ["whenever","meanwhile","justify"]},
+    {"question": "What is the acronym for Hypertext Markup Language?",
+     "answer": "HTML",
+     "decoy": ["CSS", "JS", "HML"]},
+    {"question": "Which of the following asks if something is strictly equal?",
+     "answer": "===",
+     "decoy": ["==", "!==", "="]},
+    {"question": "What does CSS stand for?",
+     "answer": "Cascading style sheets",
+     "decoy": ["Cascading sheet styles", "Computer styling sheets", "Computational sheet styles"]},
+    {"question": "Which is the index value of the first element in an array?",
+     "answer": "0",
+     "decoy": ["1", "first", "foo"]}       
 ];
 
 const mainScreen = document.getElementById("main-container");
@@ -76,49 +76,75 @@ buildQuestionPage();
 
 console.log("clicked!");
 // needs to start timer
+
+
 };
 
 startClick.addEventListener('click', begin);
 
-
+// I need some logic to build my questions
+// console.log(questionArray);
 
 // here I will build my question-page
-
-const buildHeader = function(){
-    const headerTwo = document.createElement("h2");
-    headerTwo.textContent="Questions goes here";
-    return headerTwo;
-};
-
-const getQuestions = function(){
-
-    const responseBtn= document.createElement("a");
-    responseBtn.setAttribute("class","response-button");
-    responseBtn.textContent="some questions from array";
-
-    const liItem= document.createElement("li");
-
-    liItem.appendChild(responseBtn);
-
-    return liItem;
-};
-
-const buildListContainer = function(){
-    const listContainer = document.createElement("ul");
-    listContainer.setAttribute("class", "questions");
-
-    return listContainer;
-};
+// for( let i=0; i<questionArray.length; i++){
 
 
 const buildQuestionPage = function(){
+    for (let i = 0; i < questionArray.length; i++){
+
+    const buildQuestion = function(){
+    // for (let i = 0; i < questionArray.length; i++){
+
+        const headerTwo = document.createElement("h2");
+        // console.log(questionArray[i].question);
+        // headerTwo.textContent = questionArray[i].question;
+        headerTwo.textContent = questionArray[i].question;
+
+        return headerTwo;
+    // };
+    };
     
-    const header = buildHeader();
+    const getAnswer = function(){
+
+        const responseBtn= document.createElement("a");
+        responseBtn.setAttribute("class","response-button");
+        responseBtn.textContent= questionArray[i].answer[i];
+    
+        const liItem= document.createElement("li");
+    
+        liItem.appendChild(responseBtn);
+    };
+
+
+    const getDecoys = function(){
+    // for (let i = 0; i < questionArray[i].decoy.length; i++){
+    // console.log(questionArray[i].decoy.length);
+        const responseBtn= document.createElement("a");
+        responseBtn.setAttribute("class","response-button");
+        responseBtn.textContent= questionArray[i].decoy[i];
+    
+        const liItem= document.createElement("li");
+    
+        liItem.appendChild(responseBtn);
+    
+        return liItem;
+    // };
+    };
+
+    const buildListContainer = function(){
+        const listContainer = document.createElement("ul");
+        listContainer.setAttribute("class", "questions");
+    
+        return listContainer;
+    };
+
+    
+    const header = buildQuestion();
     const listContainer = buildListContainer();
-    const question1 = getQuestions();
-    const question2 = getQuestions();
-    const question3 = getQuestions();
-    const question4 = getQuestions();
+    const question1 = getDecoys();
+    const question2 = getDecoys();
+    const question3 = getDecoys();
+    const question4 = getAnswer();
 
 
     listContainer.append(question1, question2, question3, question4);
@@ -132,6 +158,5 @@ const buildQuestionPage = function(){
 
     mainScreen.appendChild(questionPage);
 };
+};
 // pretty sure this is working as can see correct HTML in console log
-
-
