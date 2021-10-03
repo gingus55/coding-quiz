@@ -65,7 +65,7 @@ const startClick = document.getElementById("start");
 const starterPage = document.querySelector("#starting-page");
 
 // I need a timer to be present
-let timeRemaining = 75;
+let timeRemaining = 20;
 
 const startTimer = function () {
   const countdownElement = document.querySelector("#countdown");
@@ -73,15 +73,16 @@ const startTimer = function () {
   const timerTick = function () {
     timeRemaining -= 1;
     countdownElement.textContent = timeRemaining;
+
+    // I need GAME OVER if time remaining falls below 0
+    if (timeRemaining <= 0) {
+      console.log("GAME OVER!!!!!");
+      clearInterval(timer);
+    }
   };
   // set interval
   const timer = setInterval(timerTick, 1000);
 };
-
-// I need GAME OVER if time remaining falls below 0
-if(timeRemaining <= "0"){
-    alert("GAME OVER!!!!!");
-}
 
 const begin = function () {
   //   needs to remove starting page
