@@ -107,7 +107,9 @@ const enterHighscore = function (finalScore) {
   enterInitials.textContent = "Enter your name:";
 
   const getInitials = document.createElement("input");
+  getInitials.setAttribute("type", "text");
   getInitials.setAttribute("id", "initials");
+  getInitials.setAttribute("placeholder", "Enter Name Here:");
 
   const resultSection = document.createElement("section");
   resultSection.setAttribute("id", "result");
@@ -121,14 +123,26 @@ const enterHighscore = function (finalScore) {
   mainScreen.appendChild(resultSection);
 
   const saveScore = function (event) {
-    console.log("saving....");
+    const getName = document.querySelector("#initials").value;
+
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+    const recentScore = {
+      score: finalScore,
+      scorer: getName,
+    };
+
+    highScores.push(recentScore);
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
+    window.location.href = "./highscores.html";
+    console.log(getName);
   };
 
   const resultSubmit = document.querySelector("#submit");
   resultSubmit.addEventListener("click", saveScore);
 };
-
-
 
 let questionNumber = 0;
 
@@ -176,6 +190,7 @@ const buildQuestionPage = function () {
   } else {
     const finalScore = timeRemaining;
     const stop = document.querySelector("#countdown");
+    timeRemaining = 100;
     stop.remove();
     enterHighscore(finalScore);
     return finalScore;
@@ -189,15 +204,17 @@ const answerSelection = document.querySelector("#main-container");
 
 const handleAnswer = function (event) {
   const target = event.target;
-  const correctAnswer =
-    target.getAttribute("id") === target.getAttribute("data-log");
+  if (target.getAttribute("class") === "response-button") {
+    const correctAnswer =
+      target.getAttribute("id") === target.getAttribute("data-log");
 
-  if (correctAnswer) {
-    document.getElementById("main-container").innerHTML = "";
+    if (correctAnswer) {
+      document.getElementById("main-container").innerHTML = "";
 
-    buildQuestionPage();
-  } else {
-    timeRemaining -= 5;
+      buildQuestionPage();
+    } else {
+      timeRemaining -= 5;
+    }
   }
 };
 

@@ -24,7 +24,7 @@ body {
  color: black;
 }
 
-.button, #submit:hover{
+.button:hover, #submit:hover{
     background-color: blue;
     color: white;
     cursor: pointer;
