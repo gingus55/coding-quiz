@@ -57,33 +57,62 @@ startClick.addEventListener('click', begin);
 let questionNumber = 0;
 
 // SECOND ATTEMPT BUILD QUESTION {PAGE}
-const buildQuestionPage = function(){
+const buildQuestionPage = function () {
+  const questionPage = document.createElement("section");
+  questionPage.setAttribute("class", "question-page");
+  questionPage.setAttribute("id", "question-page");
 
-    const questionPage = document.createElement("section");
-    questionPage.setAttribute("class", "question-page");
+  const questionHeader = document.createElement("h2");
+  questionHeader.textContent = questionArray[questionNumber].question;
 
-    const questionHeader = document.createElement("h2");
-    questionHeader.textContent = questionArray[questionNumber].question;
+  const answerList = document.createElement("ul");
+  answerList.setAttribute("class", "questions");
+  answerList.setAttribute("id", "questions");
 
-    const answerList = document.createElement("ul");
-    answerList.setAttribute("class", "questions");
+  answerList.setAttribute("data-answer", questionArray[questionNumber].answer);
 
-    for (let i=0; i<questionArray[questionNumber].decoy.length; i++){
+  for (let i = 0; i < questionArray[questionNumber].decoy.length; i++) {
     const answerBtn = document.createElement("a");
     answerBtn.setAttribute("class", "response-button");
+    answerBtn.setAttribute("id", questionArray[questionNumber].answer);
+    answerBtn.setAttribute("data-log", questionArray[questionNumber].decoy[i]);
+
     answerBtn.textContent = questionArray[questionNumber].decoy[i];
 
     const listItem = document.createElement("li");
     listItem.appendChild(answerBtn);
 
     answerList.appendChild(listItem);
-    };
+  }
 
-    questionPage.append(questionHeader, answerList);
+  questionPage.append(questionHeader, answerList);
 
-    mainScreen.appendChild(questionPage);
+  mainScreen.appendChild(questionPage);
 
-    questionNumber+=1;
+  questionNumber += 1;
 
-    // return listItem;
-    };
+  // return listItem;
+};
+
+// I need to check if the answer selected is correct or not
+
+const questionPage = document.querySelector("#question-page");
+const answerSelection = document.querySelector("#main-container");
+
+const handleAnswer = function (event) {
+  const currentTarget = event.currentTarget;
+  const target = event.target;
+
+  //   console.log(currentTarget);
+  //   console.log(target);
+
+  if (target.getAttribute("id") === target.getAttribute("data-log")) {
+    console.log("correct");
+    // questionPage.remove();
+    // mainScreen.removeChild(questionPage);
+    // buildQuestionPage();
+  } else {
+  }
+};
+
+answerSelection.addEventListener("click", handleAnswer);
