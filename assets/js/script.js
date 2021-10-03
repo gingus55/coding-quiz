@@ -41,6 +41,21 @@ const mainScreen = document.getElementById("main-container");
 const startClick = document.getElementById("start");
 const starterPage = document.querySelector("#starting-page");
 
+// I need a timer to be present
+let timeRemaining = 75;
+
+const startTimer = function(){
+    const countdownElement = document.querySelector("#countdown");
+    // declare tick function
+    const timerTick=function(){
+        timeRemaining -= 1;
+        countdownElement.textContent = timeRemaining;
+    };
+
+    // set interval
+    const timer = setInterval(timerTick, 1000);
+}
+
 const begin = function(){
 //   needs to remove starting page
 starterPage.remove(); 
@@ -49,6 +64,7 @@ buildQuestionPage();
 
 console.log("clicked!");
 // needs to start timer
+startTimer();
 
 };
 
