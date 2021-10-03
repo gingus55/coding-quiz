@@ -78,6 +78,11 @@ const startTimer = function () {
   const timer = setInterval(timerTick, 1000);
 };
 
+// I need GAME OVER if time remaining falls below 0
+if(timeRemaining <= "0"){
+    alert("GAME OVER!!!!!");
+}
+
 const begin = function () {
   //   needs to remove starting page
   starterPage.remove();
