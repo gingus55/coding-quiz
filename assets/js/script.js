@@ -34,35 +34,8 @@ const questionArray = [
      "decoy": ["1", "first", "foo", "0"]}       
 ];
 
+// this is my main container
 const mainScreen = document.getElementById("main-container");
-
-
-// // Here I will build the starting page
-
-// const buildStarterPage = function() {
-//     const starterBtn = document.createElement("a");
-//     starterBtn.setAttribute("class", "button");
-//     starterBtn.setAttribute("id", "start");
-//     starterBtn.textContent = "Start";
-
-//     const instructions = document.createElement("p");
-//     instructions.textContent = "You have 75 seconds to answer as many questions correctly as possible. Good Luck!";
-
-//     const title = document.createElement("h1");
-//     title.textContent = "Coding Challenge";
-
-
-//     const starterPage = document.createElement("section");
-//     starterPage.setAttribute("class", "starting-page");
-//     starterPage.setAttribute("id", "starting-page");
-
-//     starterPage.append(title, instructions, starterBtn);
-
-//     mainScreen.appendChild(starterPage);
-// }
-
-// // render starter page on load
-// window.addEventListener('load', buildStarterPage);
 
 // i need to make the start button commence the quiz
 const startClick = document.getElementById("start");
@@ -77,86 +50,40 @@ buildQuestionPage();
 console.log("clicked!");
 // needs to start timer
 
-
 };
 
 startClick.addEventListener('click', begin);
 
-// I need some logic to build my questions
-// console.log(questionArray);
+let questionNumber = 0;
 
-// here I will build my question-page
-// for( let i=0; i<questionArray.length; i++){
-const questionNumber = 0;
-
+// SECOND ATTEMPT BUILD QUESTION {PAGE}
 const buildQuestionPage = function(){
-    // for (let i = 0; i < questionArray.length; i++){
-
-    const buildQuestion = function(){
-    // for (let i = 0; i < questionArray.length; i++){
-
-        const headerTwo = document.createElement("h2");
-        // console.log(questionArray[i].question);
-        // headerTwo.textContent = questionArray[i].question;
-        headerTwo.textContent = questionArray[questionNumber].question;
-
-        return headerTwo;
-    // };
-    };
-    
-    // const getAnswer = function(){
-
-    //     const responseBtn= document.createElement("a");
-    //     responseBtn.setAttribute("class","response-button");
-    //     responseBtn.textContent= questionArray[i].answer[i];
-    
-    //     const liItem= document.createElement("li");
-    
-    //     liItem.appendChild(responseBtn);
-    // };
-
-
-    const getDecoys = function(){
-    // for (let i = 0; i < questionArray[i].decoy.length; i++){
-    // console.log(questionArray[i].decoy.length);
-        const responseBtn= document.createElement("a");
-        responseBtn.setAttribute("class","response-button");
-        responseBtn.textContent= questionArray[questionNumber].decoy[questionNumber];
-    
-        const liItem= document.createElement("li");
-    
-        liItem.appendChild(responseBtn);
-    
-        return liItem;
-    // };
-    };
-
-    const buildListContainer = function(){
-        const listContainer = document.createElement("ul");
-        listContainer.setAttribute("class", "questions");
-    
-        return listContainer;
-    };
-
-    
-    const header = buildQuestion();
-    const listContainer = buildListContainer();
-    const question1 = getDecoys();
-    const question2 = getDecoys();
-    const question3 = getDecoys();
-    const question4 = getDecoys();
-
-
-    listContainer.append(question1, question2, question3, question4);
 
     const questionPage = document.createElement("section");
     questionPage.setAttribute("class", "question-page");
 
-    questionPage.append(header, listContainer);
+    const questionHeader = document.createElement("h2");
+    questionHeader.textContent = questionArray[questionNumber].question;
 
-    console.log(questionPage);
+    const answerList = document.createElement("ul");
+    answerList.setAttribute("class", "questions");
+
+    for (let i=0; i<questionArray[questionNumber].decoy.length; i++){
+    const answerBtn = document.createElement("a");
+    answerBtn.setAttribute("class", "response-button");
+    answerBtn.textContent = questionArray[questionNumber].decoy[i];
+
+    const listItem = document.createElement("li");
+    listItem.appendChild(answerBtn);
+
+    answerList.appendChild(listItem);
+    };
+
+    questionPage.append(questionHeader, answerList);
 
     mainScreen.appendChild(questionPage);
-};
-// };
-// pretty sure this is working as can see correct HTML in console log
+
+    questionNumber+=1;
+
+    // return listItem;
+    };
