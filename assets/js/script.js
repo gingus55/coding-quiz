@@ -104,7 +104,7 @@ const enterHighscore = function (finalScore) {
   yourScore.textContent = "You scored: " + finalScore;
 
   const enterInitials = document.createElement("h3");
-  enterInitials.textContent = "Enter your initials:";
+  enterInitials.textContent = "Enter your name:";
 
   const getInitials = document.createElement("input");
   getInitials.setAttribute("id", "initials");
@@ -119,7 +119,16 @@ const enterHighscore = function (finalScore) {
   resultSection.append(yourScore, enterInitials, getInitials, submitBtn);
 
   mainScreen.appendChild(resultSection);
+
+  const saveScore = function (event) {
+    console.log("saving....");
+  };
+
+  const resultSubmit = document.querySelector("#submit");
+  resultSubmit.addEventListener("click", saveScore);
 };
+
+
 
 let questionNumber = 0;
 
