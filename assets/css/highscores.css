@@ -1,8 +1,10 @@
 .main-container{
     display: flex;
-    flex-direction: row;
-    color:red;
-    background-color: red;
-    
-};
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
 
+ul{
+    list-style-type: none;
+}
