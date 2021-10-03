@@ -90,8 +90,6 @@ const buildQuestionPage = function () {
   mainScreen.appendChild(questionPage);
 
   questionNumber += 1;
-
-  // return listItem;
 };
 
 // I need to check if the answer selected is correct or not
@@ -105,13 +103,16 @@ const handleAnswer = function (event) {
 
   //   console.log(currentTarget);
   //   console.log(target);
+  const correctAnswer =
+    target.getAttribute("id") === target.getAttribute("data-log");
 
-  if (target.getAttribute("id") === target.getAttribute("data-log")) {
+  if (correctAnswer) {
     console.log("correct");
-    // questionPage.remove();
-    // mainScreen.removeChild(questionPage);
-    // buildQuestionPage();
+    document.getElementById("main-container").innerHTML = "";
+
+    buildQuestionPage();
   } else {
+    alert("GAME OVER!!!!");
   }
 };
 
