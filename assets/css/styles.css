@@ -15,7 +15,7 @@ body {
     justify-content: space-between;
 }
 
-.button{
+.button, #submit{
  margin: 5px 5px;
  padding: 5px 5px;
  background-color: aqua;
@@ -24,7 +24,7 @@ body {
  color: black;
 }
 
-.button:hover{
+.button, #submit:hover{
     background-color: blue;
     color: white;
     cursor: pointer;
@@ -53,3 +53,4 @@ body {
     background-color: lightpink;
     cursor: pointer;
 }
+

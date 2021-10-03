@@ -65,7 +65,7 @@ const startClick = document.getElementById("start");
 const starterPage = document.querySelector("#starting-page");
 
 // I need a timer to be present
-let timeRemaining = 20;
+let timeRemaining = 75;
 
 const startTimer = function () {
   const countdownElement = document.querySelector("#countdown");
@@ -76,8 +76,8 @@ const startTimer = function () {
 
     // I need GAME OVER if time remaining falls below 0
     if (timeRemaining <= 0) {
-      console.log("GAME OVER!!!!!");
       clearInterval(timer);
+      location.reload();
     }
   };
   // set interval
@@ -96,44 +96,83 @@ const begin = function () {
 
 startClick.addEventListener("click", begin);
 
+// need score log function
+const enterHighscore = function (finalScore) {
+  document.getElementById("main-container").innerHTML = "";
+
+  const yourScore = document.createElement("h2");
+  yourScore.textContent = "You scored: " + finalScore;
+
+  const enterInitials = document.createElement("h3");
+  enterInitials.textContent = "Enter your initials:";
+
+  const getInitials = document.createElement("input");
+  getInitials.setAttribute("id", "initials");
+
+  const resultSection = document.createElement("section");
+  resultSection.setAttribute("id", "result");
+
+  const submitBtn = document.createElement("button");
+  submitBtn.setAttribute("id", "submit");
+  submitBtn.textContent = "SUBMIT";
+
+  resultSection.append(yourScore, enterInitials, getInitials, submitBtn);
+
+  mainScreen.appendChild(resultSection);
+};
+
 let questionNumber = 0;
 
 // SECOND ATTEMPT BUILD QUESTION {PAGE}
 const buildQuestionPage = function () {
-  const questionPage = document.createElement("section");
-  questionPage.setAttribute("class", "question-page");
-  questionPage.setAttribute("id", "question-page");
+  if (questionNumber < questionArray.length) {
+    const questionPage = document.createElement("section");
+    questionPage.setAttribute("class", "question-page");
+    questionPage.setAttribute("id", "question-page");
 
-  const questionHeader = document.createElement("h2");
-  questionHeader.textContent = questionArray[questionNumber].question;
+    const questionHeader = document.createElement("h2");
+    questionHeader.textContent = questionArray[questionNumber].question;
 
-  const answerList = document.createElement("ul");
-  answerList.setAttribute("class", "questions");
-  answerList.setAttribute("id", "questions");
+    const answerList = document.createElement("ul");
+    answerList.setAttribute("class", "questions");
+    answerList.setAttribute("id", "questions");
 
-  answerList.setAttribute("data-answer", questionArray[questionNumber].answer);
+    answerList.setAttribute(
+      "data-answer",
+      questionArray[questionNumber].answer
+    );
 
-  for (let i = 0; i < questionArray[questionNumber].decoy.length; i++) {
-    const answerBtn = document.createElement("a");
-    answerBtn.setAttribute("class", "response-button");
-    answerBtn.setAttribute("id", questionArray[questionNumber].answer);
-    answerBtn.setAttribute("data-log", questionArray[questionNumber].decoy[i]);
+    for (let i = 0; i < questionArray[questionNumber].decoy.length; i++) {
+      const answerBtn = document.createElement("a");
+      answerBtn.setAttribute("class", "response-button");
+      answerBtn.setAttribute("id", questionArray[questionNumber].answer);
+      answerBtn.setAttribute(
+        "data-log",
+        questionArray[questionNumber].decoy[i]
+      );
 
-    answerBtn.textContent = questionArray[questionNumber].decoy[i];
+      answerBtn.textContent = questionArray[questionNumber].decoy[i];
 
-    const listItem = document.createElement("li");
-    listItem.appendChild(answerBtn);
+      const listItem = document.createElement("li");
+      listItem.appendChild(answerBtn);
 
-    answerList.appendChild(listItem);
+      answerList.appendChild(listItem);
+    }
+
+    questionPage.append(questionHeader, answerList);
+
+    mainScreen.appendChild(questionPage);
+
+    questionNumber += 1;
+  } else {
+    const finalScore = timeRemaining;
+    const stop = document.querySelector("#countdown");
+    stop.remove();
+    enterHighscore(finalScore);
+    return finalScore;
   }
-
-  questionPage.append(questionHeader, answerList);
-
-  mainScreen.appendChild(questionPage);
-
-  questionNumber += 1;
 };
-
+// const finalResult = finalScore;
 // I need to check if the answer selected is correct or not
 
 const questionPage = document.querySelector("#question-page");
@@ -141,7 +180,6 @@ const answerSelection = document.querySelector("#main-container");
 
 const handleAnswer = function (event) {
   const target = event.target;
-
   const correctAnswer =
     target.getAttribute("id") === target.getAttribute("data-log");
 
