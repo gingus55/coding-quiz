@@ -64,6 +64,33 @@ const mainScreen = document.getElementById("main-container");
 const startClick = document.getElementById("start");
 const starterPage = document.querySelector("#starting-page");
 
+// Game Over page
+const gameOver = function(){
+  document.getElementById("main-container").innerHTML = "";
+
+  const gameOverTitle = document.createElement("h2");
+  gameOverTitle.textContent = "GAME OVER";
+
+  const warning = document.createElement("h3");
+  warning.textContent = "You let the timer hit 0 😢";
+
+  const reTry = function (event) {
+    location.href = "./index.html";
+  };
+
+  const gameOverScreen = document.createElement("section");
+  gameOverScreen.setAttribute("id", "game-over");
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.setAttribute("id", "submit");
+  tryAgainBtn.textContent = "Try Again";
+  tryAgainBtn.addEventListener("click", reTry);
+
+  gameOverScreen.append(gameOverTitle, warning, tryAgainBtn);
+
+  mainScreen.appendChild(gameOverScreen);
+}
+
 // I need a timer to be present
 let timeRemaining = 75;
 
@@ -77,9 +104,10 @@ const startTimer = function () {
     // I need GAME OVER if time remaining falls below 0
     if (timeRemaining <= 0) {
       clearInterval(timer);
-      location.reload();
+      gameOver();
     }
   };
+
   // set interval
   const timer = setInterval(timerTick, 1000);
 };
@@ -89,7 +117,6 @@ const begin = function () {
   starterPage.remove();
   // needs to render questions
   buildQuestionPage();
-
   // needs to start timer
   startTimer();
 };
@@ -196,9 +223,8 @@ const buildQuestionPage = function () {
     return finalScore;
   }
 };
-// const finalResult = finalScore;
-// I need to check if the answer selected is correct or not
 
+// I need to check if the answer selected is correct or not
 const questionPage = document.querySelector("#question-page");
 const answerSelection = document.querySelector("#main-container");
 
