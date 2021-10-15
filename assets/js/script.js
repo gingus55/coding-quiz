@@ -1,4 +1,3 @@
-// I need an array of questions defined globally
 const questionArray = [
   {
     question: "What acronym is used for 'Application Program Interface'?",
@@ -57,14 +56,12 @@ const questionArray = [
   },
 ];
 
-// this is my main container
 const mainScreen = document.getElementById("main-container");
-
-// i need to make the start button commence the quiz
 const startClick = document.getElementById("start");
 const starterPage = document.querySelector("#starting-page");
+const questionPage = document.querySelector("#question-page");
+const answerSelection = document.querySelector("#main-container");
 
-// Game Over page
 const gameOver = function(){
   document.getElementById("main-container").innerHTML = "";
 
@@ -91,17 +88,15 @@ const gameOver = function(){
   mainScreen.appendChild(gameOverScreen);
 }
 
-// I need a timer to be present
 let timeRemaining = 75;
 
 const startTimer = function () {
   const countdownElement = document.querySelector("#countdown");
-  // declare tick function
+  
   const timerTick = function () {
     timeRemaining -= 1;
     countdownElement.textContent = timeRemaining;
 
-    // I need GAME OVER if time remaining falls below 0
     if (timeRemaining <= 0) {
       clearInterval(timer);
       gameOver();
@@ -113,17 +108,13 @@ const startTimer = function () {
 };
 
 const begin = function () {
-  //   needs to remove starting page
   starterPage.remove();
-  // needs to render questions
   buildQuestionPage();
-  // needs to start timer
   startTimer();
 };
 
 startClick.addEventListener("click", begin);
 
-// need score log function
 const enterHighscore = function (finalScore) {
   document.getElementById("main-container").innerHTML = "";
 
@@ -164,7 +155,6 @@ const enterHighscore = function (finalScore) {
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
     window.location.href = "./highscores.html";
-    console.log(getName);
   };
 
   const resultSubmit = document.querySelector("#submit");
@@ -173,7 +163,6 @@ const enterHighscore = function (finalScore) {
 
 let questionNumber = 0;
 
-// SECOND ATTEMPT BUILD QUESTION {PAGE}
 const buildQuestionPage = function () {
   if (questionNumber < questionArray.length) {
     const questionPage = document.createElement("section");
@@ -223,10 +212,6 @@ const buildQuestionPage = function () {
     return finalScore;
   }
 };
-
-// I need to check if the answer selected is correct or not
-const questionPage = document.querySelector("#question-page");
-const answerSelection = document.querySelector("#main-container");
 
 const handleAnswer = function (event) {
   const target = event.target;
