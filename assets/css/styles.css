@@ -1,0 +1,56 @@
+body {
+    padding: 0;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.on-screen{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.button, #submit{
+ margin: 5px 5px;
+ padding: 5px 5px;
+ background-color: aqua;
+ border-radius: 8%;
+ text-decoration: none;
+ color: black;
+}
+
+.button:hover, #submit:hover{
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.questions{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    list-style-type: none;
+    text-align: left;
+}
+
+.response-button{
+    background-color: purple;
+    padding: 2px 60px;
+    border-radius: 10% 10%;
+    color: white;
+}
+
+.questions li{
+    margin-bottom: 20px;
+}
+
+.response-button:hover{
+    background-color: lightpink;
+    cursor: pointer;
+}
+
